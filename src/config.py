@@ -34,6 +34,6 @@ class Config:
         if adapter not in {"none", "ecjtu"}:
             raise ValueError("CAMPUS_ADAPTER 必须为 none 或 ecjtu")
         suffix = os.getenv("CAMPUS_ISP_SUFFIX", "@cmcc").strip()
-        if suffix not in {"", "@cmcc"}:
-            raise ValueError("当前 CAMPUS_ISP_SUFFIX 仅支持 @cmcc 或空值；其他运营商需真实抓包")
+        if suffix not in {"", "@cmcc", "@telecom", "@unicom"}:
+            raise ValueError("CAMPUS_ISP_SUFFIX 仅支持 @cmcc、@telecom、@unicom 或空值")
         return cls(os.getenv("CAMPUS_USERNAME", ""), os.getenv("CAMPUS_PASSWORD", ""), interval, adapter, suffix)

@@ -87,8 +87,8 @@ class EcjtuPortalAdapter(PortalAdapter):
         session: requests.Session | None = None,
         local_ip_resolver: Callable[[], str] | None = None,
     ) -> None:
-        if isp_suffix not in {"", "@cmcc"}:
-            raise ValueError("运营商后缀只允许为空或 @cmcc")
+        if isp_suffix not in {"", "@cmcc", "@telecom", "@unicom"}:
+            raise ValueError("运营商后缀只允许为空、@cmcc、@telecom 或 @unicom")
         if session is None:
             session = ProbeSession()
         elif isinstance(session, requests.Session) and not isinstance(

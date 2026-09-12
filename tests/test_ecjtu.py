@@ -279,7 +279,18 @@ def test_probe_session_is_allowed() -> None:
     assert adapter is not None
 
 
-@pytest.mark.parametrize("suffix", ["@telecom", "cmcc", "@unicom"])
+@pytest.mark.parametrize("suffix", ["@unknown", "cmcc", "@cmcc@unicom"])
 def test_unknown_isp_suffix_is_rejected(suffix: str) -> None:
     with pytest.raises(ValueError, match="@cmcc"):
         EcjtuPortalAdapter(isp_suffix=suffix)
+
+
+@pytest.mark.parametrize('suffix', ['@cmcc', '@telecom', '@unicom'])
+@pytest.mark.parametrize('qualified', [False, True])
+def test_school_operator_choices_submit_exactly_one_suffix(suffix, qualified):
+    session = Mock()
+    session.post.return_value = response(302, RESULT_URL)
+    adapter = EcjtuPortalAdapter(suffix, session=session, local_ip_resolver=lambda: LOCAL_IP)
+    assert adapter.matches(network())
+    adapter.authenticate('20260001' + (suffix if qualified else ''), 'fake-password')
+    assert session.post.call_args.kwargs['data']['DDDDD'] == ',0,20260001' + suffix

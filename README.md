@@ -1,5 +1,7 @@
 # Windows 校园网自动认证框架
 
+Windows 免 Python 安装版及开机自启动步骤见 [WINDOWS-README.md](WINDOWS-README.md)。支持移动 `@cmcc`、电信 `@telecom`、联通 `@unicom`；电信和联通尚未使用真实账号验证。当前回归测试 115 项通过。
+
 已实现网络检测、华东交通大学 Adapter、认证状态机、退避重试、凭据配置和轮转日志。**默认只检测网络；在 .env 设置 CAMPUS_ADAPTER=ecjtu 才启用认证。** 2026-09-12 已完成真实有线认证验证，用户随后确认有线及 Wi-Fi 手动运行均成功。其他学校及运营商仍需单独适配验证。
 
 ## 运行

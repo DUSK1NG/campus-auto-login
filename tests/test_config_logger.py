@@ -8,6 +8,12 @@ def test_credentials_are_not_in_repr():
     assert "secret" not in repr(Config("name", "secret"))
 
 
+@pytest.mark.parametrize('suffix', ['@cmcc', '@telecom', '@unicom'])
+def test_all_school_operator_choices_load(tmp_path, monkeypatch, suffix):
+    monkeypatch.setenv('CAMPUS_ISP_SUFFIX', suffix)
+    assert Config.load(tmp_path).isp_suffix == suffix
+
+
 @pytest.mark.parametrize("value", ["nan", "inf", "0", "abc", "3601"])
 def test_invalid_interval(tmp_path, monkeypatch, value):
     monkeypatch.setenv("CHECK_INTERVAL", value)
