@@ -1,10 +1,10 @@
-# 华东交通大学校园网自动登录
+# ecjtu-auto-login · 华东交通大学校园网自动连接程序
 
-连接校园网后自动登录，支持移动、电信、联通，可设置开机后后台运行。
+这是面向华东交通大学校园网的非官方自动连接程序。连接校园有线网或 Wi-Fi 后自动完成登录认证，支持移动、电信、联通，可设置开机后后台运行。
 
 ## 下载
 
-在 [下载页面](https://github.com/DUSK1NG/campus-auto-login/releases/latest) 选择 `campus-auto-login-windows.zip`。
+在 [下载页面](https://github.com/DUSK1NG/ecjtu-auto-login/releases/latest) 选择 `campus-auto-login-windows.zip`。
 
 将整个压缩包解压到固定目录，无需安装 Python。
 
@@ -60,8 +60,8 @@ CHECK_INTERVAL=30
 已下载 Windows 版的用户无需执行本节。源码运行需要 Python 3.11 或更高版本。
 
 ```powershell
-git clone https://github.com/DUSK1NG/campus-auto-login.git
-cd campus-auto-login
+git clone https://github.com/DUSK1NG/ecjtu-auto-login.git
+cd ecjtu-auto-login
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 if (-not (Test-Path .env)) { Copy-Item .env.example .env }
@@ -70,3 +70,15 @@ notepad .env
 ```
 
 按上面的账号配置说明填写 `.env`，运行后按 `Ctrl+C` 退出。
+
+## 免责声明
+
+本项目为个人开发的非官方工具，与华东交通大学及各运营商无隶属或授权关系，仅用于简化本人有权使用的校园网账号登录操作，不提供绕过认证、缴费或网络访问限制的功能。请遵守学校及运营商的网络使用规定。
+
+程序按现状提供，不保证在所有设备或校园网系统更新后持续可用。请自行判断是否使用，并妥善保管保存在本机 `.env` 中的账号密码；反馈问题时不要上传密码或包含个人信息的日志。
+
+## 联系方式
+
+邮箱：[jk1ng@qq.com](mailto:jk1ng@qq.com)
+
+问题反馈：[GitHub Issues](https://github.com/DUSK1NG/ecjtu-auto-login/issues)
